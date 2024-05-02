@@ -4,6 +4,8 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.testng.annotations.Test;
 
+import java.nio.file.Paths;
+
 import static org.testng.AssertJUnit.assertEquals;
 
 public class plus {
@@ -16,6 +18,8 @@ public class plus {
         page.navigate("https://www.plusport.com/");
         String actualTitle =page.title();
         String expectedTitle ="LMS Software, E-learning en veiligheidstrainingen van PlusPort";
+        String scrrenshotPath ="screenshot";
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshot/titleTest.png")));
         assertEquals(actualTitle,expectedTitle);
 
     }
