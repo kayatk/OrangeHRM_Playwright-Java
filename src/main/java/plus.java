@@ -3,6 +3,7 @@ import com.microsoft.playwright.options.SelectOption;
 import org.testng.annotations.Test;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -63,6 +64,12 @@ public class plus extends TestBase {
         //Group DROP DOWN
         Locator grpDrpdwn =page.locator("#files");
         grpDrpdwn.selectOption("Ruby");
-        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("Ruby.png")).setFullPage(true));
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshot/Ruby.png")).setFullPage(true));
+
+        //Screenshot
+        //visible region
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshot/visibleRegion.png")));
+        page.screenshot(new Page.ScreenshotOptions().setFullPage(true).setPath(Paths.get("screenshot/FullPage.png")));
+        page.screenshot(new Page.ScreenshotOptions().setMask(Arrays.asList(grpDrpdwn)).setPath(Paths.get("screenshot/Masking.png")));
     }
 }
