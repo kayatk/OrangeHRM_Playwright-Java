@@ -75,9 +75,13 @@ public class plus extends TestBase {
         //---------------------------------------------WINDOW HANDLINGS----------------------------------------------------------------
 
         page.navigate("https://www.lambdatest.com/selenium-playground/window-popup-modal-demo");
+
+        //Single Popup
         Locator tab=page.getByText("Follow On Twitter");
-        tab.click();
-
-
+        Page popup = page.waitForPopup(()-> tab.click());
+        popup.waitForLoadState();
+        System.out.println(popup.title());
+        assertThat(popup).hasTitle("Profile / X");
+        popup.locator("//span[text()='Log in']").click();
     }
 }
