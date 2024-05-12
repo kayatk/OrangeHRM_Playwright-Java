@@ -83,5 +83,15 @@ public class plus extends TestBase {
         System.out.println(popup.title());
         assertThat(popup).hasTitle("Profile / X");
         popup.locator("//span[text()='Log in']").click();
+
+        //Multiple popup
+        Locator multiplePopup=page.getByText("Follow All");
+        Page mulpopup=page.waitForPopup(new Page.WaitForPopupOptions().setPredicate(page1 -> page1.context().pages().size()==3),
+                ()->multiplePopup.click());
+
+        List<Page> pages =mulpopup.context().pages();
+        System.out.println(pages.size());
+        Page fb= pages.get(0);
     }
+
 }
